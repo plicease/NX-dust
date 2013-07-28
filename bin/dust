@@ -4,5 +4,9 @@ use strict;
 use warnings;
 use NX::dust;
 
+# PODNAME: dust
+# ABSTRACT: du -s -c -h * | sort
+# VERSION
+
 NX::dust->main(@ARGV);
 
