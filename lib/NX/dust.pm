@@ -3,8 +3,64 @@ package NX::dust;
 use strict;
 use warnings;
 use v5.10;
+use Number::Bytes::Human;
+use IPC::Run qw( run );
 
 # ABSTRACT: du -s -c -h * | sort
 # VERSION
+
+sub main
+{
+  my $class = shift;
+  local @ARGV = @_;
+  
+  my $human = new Number::Bytes::Human(bs => 1024);
+
+  my $directory_only = 0;
+
+  my @list;
+
+  while(my $arg = shift)
+  {
+    if($arg eq '-d')
+    {
+      $directory_only = 1;
+    }
+    elsif($arg eq '--')
+    {
+      push @list, @ARGV;
+     last;
+    }
+   elsif($arg =~ /^-/)
+    { 
+      print STDERR "unknown option: $arg\n";
+      exit 2;
+    }
+    else
+    {
+      push @list, $arg;
+    }
+  }
+
+  unless(@list > 0)
+  {
+    opendir(my $dh, ".") || die "unable to read . $!";
+    @list = grep !/^\.\.?$/, readdir($dh);
+    closedir $dh;
+    @list = grep { -d } @list if $directory_only;
+  }
+
+  my $in;
+  my $out;
+  my $err;
+  run [ 'du', '-B' => 1, '-s', '-c', @list ], \$in, \$out, \$err;
+
+  my %list = map { (split "\t")[1,0]; } split "\n", $out;
+
+  foreach my $thing (sort { $list{$a} <=> $list{$b} } keys %list)
+  {
+    print $human->format($list{$thing}), "\t$thing\n";
+  }
+}
 
 1;
