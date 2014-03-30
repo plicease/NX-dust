@@ -1,6 +1,15 @@
 # NX::dust
 
-du -s -c -h \* | sort
+directory dusting
+
+# SYNOPSIS
+
+    % dust
+
+# DESCRIPTION
+
+Calculate the size of all child directories and list
+in order of size, in human notation.
 
 # AUTHOR
 

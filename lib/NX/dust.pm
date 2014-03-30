@@ -6,8 +6,19 @@ use v5.10;
 use Number::Bytes::Human;
 use IPC::Run qw( run );
 
-# ABSTRACT: du -s -c -h * | sort
+# ABSTRACT: directory dusting
 # VERSION
+
+=head1 SYNOPSIS
+
+ % dust
+
+=head1 DESCRIPTION
+
+Calculate the size of all child directories and list
+in order of size, in human notation.
+
+=cut
 
 sub main
 {
