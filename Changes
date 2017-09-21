@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - use gdu instead of du on Solaris
 
 0.02      2014-11-06 06:04:07 -0500
   - use gdu instead of du on OS X

@@ -64,7 +64,7 @@ sub main
   my $in;
   my $out;
   my $err;
-  my $du = $^O eq 'darwin' ? 'gdu' : 'du';
+  my $du = $^O =~ /^(darwin|solaris)$/ ? 'gdu' : 'du';
   run [ $du, '-B' => 1, '-s', '-c', @list ], \$in, \$out, \$err;
 
   my %list = map { (split "\t")[1,0]; } split "\n", $out;
