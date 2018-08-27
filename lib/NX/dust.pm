@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use v5.10;
 use Number::Bytes::Human;
-use IPC::Run qw( run );
+use Capture::Tiny qw( capture );
 
 # ABSTRACT: directory dusting
 # VERSION
@@ -61,11 +61,11 @@ sub main
     @list = grep { -d } @list if $directory_only;
   }
 
-  my $in;
-  my $out;
-  my $err;
   my $du = $^O =~ /^(darwin|solaris)$/ ? 'gdu' : 'du';
-  run [ $du, '-B' => 1, '-s', '-c', @list ], \$in, \$out, \$err;
+
+  my($out, $err) = capture {
+    system $du, '-B' => 1, '-s', '-c', @list;
+  };
 
   my %list = map { (split "\t")[1,0]; } split "\n", $out;
 
