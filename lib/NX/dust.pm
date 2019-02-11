@@ -61,7 +61,7 @@ sub main
     @list = grep { -d } @list if $directory_only;
   }
 
-  my $du = $^O =~ /^(darwin|solaris)$/ ? 'gdu' : 'du';
+  my $du = $^O =~ /^(darwin|solaris|netbsd)$/ ? 'gdu' : 'du';
 
   my($out, $err) = capture {
     system $du, '-B' => 1, '-s', '-c', @list;
