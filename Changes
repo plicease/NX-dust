@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Add -- to du call in case filenames have leading -
 
 0.05      2019-02-11 13:58:23 -0500
   - use gdu on netbsd

@@ -64,7 +64,7 @@ sub main
   my $du = $^O =~ /^(darwin|solaris|netbsd)$/ ? 'gdu' : 'du';
 
   my($out, $err) = capture {
-    system $du, '-B' => 1, '-s', '-c', @list;
+    system $du, '-B' => 1, '-s', '-c', '--', @list;
   };
 
   my %list = map { (split "\t")[1,0]; } split "\n", $out;
