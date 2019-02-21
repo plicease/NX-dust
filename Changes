@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.06      2019-02-21 14:28:10 -0500
   - Add -- to du call in case filenames have leading -
 
 0.05      2019-02-11 13:58:23 -0500
