@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.07      2022-08-25 15:07:05 -0600
   - Sort by alpha after size to keep output consistent
 
 0.06      2019-02-21 14:28:10 -0500
