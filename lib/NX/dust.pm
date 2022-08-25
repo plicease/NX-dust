@@ -69,7 +69,7 @@ sub main
 
   my %list = map { (split "\t")[1,0]; } split "\n", $out;
 
-  foreach my $thing (sort { $list{$a} <=> $list{$b} } keys %list)
+  foreach my $thing (sort { $list{$a} <=> $list{$b} || $a cmp $b } keys %list)
   {
     print $human->format($list{$thing}), "\t$thing\n";
   }

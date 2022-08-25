@@ -4,7 +4,9 @@ directory dusting
 
 # SYNOPSIS
 
-    % dust
+```
+% dust
+```
 
 # DESCRIPTION
 

@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Sort by alpha after size to keep output consistent
 
 0.06      2019-02-21 14:28:10 -0500
   - Add -- to du call in case filenames have leading -
